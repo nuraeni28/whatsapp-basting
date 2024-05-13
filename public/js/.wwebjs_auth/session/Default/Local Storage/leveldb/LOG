@@ -1,3 +1,6 @@
-2024/05/13-14:14:20.111 3604 Reusing MANIFEST D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2024/05/13-14:14:20.114 3604 Recovering log #3
-2024/05/13-14:14:20.115 3604 Reusing old log D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\Local Storage\leveldb/000003.log 
+2024/05/13-14:53:56.852 1a1c Reusing MANIFEST D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
+2024/05/13-14:53:56.868 1a1c Recovering log #3
+2024/05/13-14:53:56.870 1a1c Reusing old log D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\Local Storage\leveldb/000003.log 
+2024/05/13-14:55:58.012 57dc Level-0 table #5: started
+2024/05/13-14:55:58.017 57dc Level-0 table #5: 18207 bytes OK
+2024/05/13-14:55:58.023 57dc Delete type=0 #3

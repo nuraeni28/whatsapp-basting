@@ -1,2 +1,3 @@
-2024/05/13-14:13:14.817 4934 Creating DB D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\Session Storage since it was missing.
-2024/05/13-14:13:14.841 4934 Reusing MANIFEST D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\Session Storage/MANIFEST-000001
+2024/05/13-14:52:47.675 a38 Reusing MANIFEST D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\Session Storage/MANIFEST-000001
+2024/05/13-14:52:47.677 a38 Recovering log #3
+2024/05/13-14:52:47.677 a38 Reusing old log D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\Session Storage/000003.log 

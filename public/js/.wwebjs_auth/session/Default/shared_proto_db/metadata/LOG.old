@@ -1,2 +1,3 @@
-2024/05/13-14:13:14.896 5430 Creating DB D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\shared_proto_db\metadata since it was missing.
-2024/05/13-14:13:14.929 5430 Reusing MANIFEST D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\shared_proto_db\metadata/MANIFEST-000001
+2024/05/13-14:52:45.754 60b8 Reusing MANIFEST D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\shared_proto_db\metadata/MANIFEST-000001
+2024/05/13-14:52:45.755 60b8 Recovering log #3
+2024/05/13-14:52:45.756 60b8 Reusing old log D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\shared_proto_db\metadata/000003.log 

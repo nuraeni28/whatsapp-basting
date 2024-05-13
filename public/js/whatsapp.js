@@ -43,15 +43,17 @@ app.post('/send-message', (req, res) => {
     const chatId = number + '@c.us';
     client.sendMessage(chatId, message)
         .then(() => {
-            console.log('Pesan berhasil dikirim ke', number);
-            res.send('Pesan berhasil dikirim ke WhatsApp');
+            console.log('Succesfully send message to', number);
+            res.send(
+         ['Succesfully send message to ' + number]
+            );
         })
         .catch(err => {
-            console.error('Gagal mengirim pesan:', err);
-            res.status(500).send('Gagal mengirim pesan ke WhatsApp');
+            console.error('Failed send message:', err);
+            res.status(500).send('Failed send message to WhatsApp');
         });
 });
 
 app.listen(port, () => {
-    console.log(`Server berjalan di http://localhost:${port}`);
+    console.log(`Server running in http://localhost:${port}`);
 });
