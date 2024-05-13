@@ -1,0 +1,20 @@
+2024/05/13-14:14:20.793 3558 Reusing MANIFEST D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/05/13-14:14:20.793 3558 Recovering log #63
+2024/05/13-14:14:20.936 3558 Reusing old log D:\Laravel\whatsapp-blasting\public\js\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000063.log 
+2024/05/13-14:14:20.936 3558 Delete type=2 #61
+2024/05/13-14:14:20.936 3558 Delete type=2 #62
+2024/05/13-14:14:20.936 3558 Delete type=2 #64
+2024/05/13-14:14:22.490 4cb4 Level-0 table #70: started
+2024/05/13-14:14:22.505 4cb4 Level-0 table #70: 594603 bytes OK
+2024/05/13-14:14:22.508 4cb4 Delete type=0 #63
+2024/05/13-14:14:22.508 4cb4 Manual compaction at level-0 from '\x00\x19\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1a\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/05/13-14:14:24.541 9dc Compacting 1@1 + 3@2 files
+2024/05/13-14:14:24.624 9dc Generated table #71@1: 42049 keys, 2208180 bytes
+2024/05/13-14:14:24.693 9dc Generated table #72@1: 22830 keys, 2190845 bytes
+2024/05/13-14:14:24.736 9dc Generated table #73@1: 30109 keys, 596478 bytes
+2024/05/13-14:14:24.736 9dc Compacted 1@1 + 3@2 files => 4995503 bytes
+2024/05/13-14:14:24.739 9dc compacted to: files[ 0 0 3 0 0 0 0 ]
+2024/05/13-14:14:24.739 9dc Delete type=2 #65
+2024/05/13-14:14:24.739 9dc Delete type=2 #66
+2024/05/13-14:14:24.739 9dc Delete type=2 #67
+2024/05/13-14:14:24.739 9dc Delete type=2 #70
