@@ -5,44 +5,59 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Message;
+use Illuminate\Support\Facades\Queue;
+use App\Jobs\SendWhatsappMessage;
 
 class WhatsAppController extends Controller
 {
     public function sendMessage(Request $request)
     {
         $responses = [];
-        $message = '';
+        $success = true;
+        $messageResponse = '';
 
         $input = $request->all();
         $message = $request->input('message');
         $phone = $request->input('phone');
+        $priority = $request->input('priority');
+
+        // Validasi priority
+        $priority = $priority === 'low' || $priority === 'high' ? $priority : 'low';
 
         if (is_array($phone) && !empty($phone) && !empty($message)) {
             foreach ($phone as $p) {
-                // send request to whatsapp js
-                $response = Http::post('http://localhost:3000/send-message', [
-                    'number' => $p,
-                    'message' => $message,
-                ]);
+                try {
+                    // save data do db
+                    $message = Message::create([
+                        'phone' => $p,
+                        'message' => $message,
+                        'priority' => $priority,
+                    ]);
+                    $responses[] = $message;
+                    $messageResponse = 'Successfully send message';
 
-                // save response in array responses
-                $responses[] = $response->json();
-                $message = 'Succesfully send message';
+                    Queue::push(new SendWhatsappMessage($message->id));
+                } catch (\Exception $e) {
+                    $messageResponse = 'Error sending message: ' . $e->getMessage();
+                    $success = false; // Set success ke false jika ada error
+                }
             }
-        } elseif (empty($phone || !is_array($phone))) {
-            $responses[] = 'No phone numbers provided or phone numbers is not an array';
-            $message = 'Error';
-        } elseif (empty($message) && !empty($phone)) {
-            $responses[] = 'Message cannot be empty';
-            $message = 'Error';
         } else {
-            $responses[] = 'Phone numbers and message cannot be empty';
-            $message = 'Error';
+            if (empty($phone) || !is_array($phone)) {
+                $messageResponse = 'No phone numbers provided or phone numbers is not an array';
+            } elseif (empty($message) && !empty($phone)) {
+                $messageResponse = 'Message cannot be empty';
+            } else {
+                $messageResponse = 'Phone numbers and message cannot be empty';
+            }
+            $success = false; // Set success ke false jika terdapat kesalahan input
         }
 
         return response()->json([
-            'message' => $message,
-            'responses' => $responses,
+            'message' => $messageResponse,
+            'success' => $success,
+            'data' => $responses,
         ]);
     }
 }

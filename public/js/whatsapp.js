@@ -1,7 +1,6 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const express = require('express');
 const qrcode = require('qrcode-terminal');
-const fs = require('fs');
 
 const app = express();
 const port = 3000;
@@ -44,9 +43,7 @@ app.post('/send-message', (req, res) => {
     client.sendMessage(chatId, message)
         .then(() => {
             console.log('Succesfully send message to', number);
-            res.send(
-         ['Succesfully send message to ' + number]
-            );
+            res.send({ message: 'Succesfully send message to ' + number });
         })
         .catch(err => {
             console.error('Failed send message:', err);
