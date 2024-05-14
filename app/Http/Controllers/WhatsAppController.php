@@ -17,43 +17,44 @@ class WhatsAppController extends Controller
         $success = true;
         $messageResponse = '';
 
-        $input = $request->all();
-        $message = $request->input('message');
-        $phone = $request->input('phone');
-        $priority = $request->input('priority');
+        $requestData = $request->json()->all();
 
-        // Validasi priority
-        $priority = $priority === 'low' || $priority === 'high' ? $priority : 'low';
+        foreach ($requestData as $data) {
+            $message = $data['message'];
+            $priority = $data['priority'];
+            $phone = $data['phone'];
+            // Validasi priority
+            $priority = $priority === 'low' || $priority === 'high' ? $priority : 'low';
 
-        if (is_array($phone) && !empty($phone) && !empty($message)) {
-            foreach ($phone as $p) {
-                try {
-                    // save data do db
-                    $message = Message::create([
-                        'phone' => $p,
-                        'message' => $message,
-                        'priority' => $priority,
-                    ]);
-                    $responses[] = $message;
-                    $messageResponse = 'Successfully send message';
+            if (is_array($phone) && !empty($phone) && !empty($message)) {
+                foreach ($phone as $p) {
+                    try {
+                        // save data do db
+                        $message = Message::create([
+                            'phone' => $p,
+                            'message' => $message,
+                            'priority' => $priority,
+                        ]);
+                        $responses[] = $message;
+                        $messageResponse = 'Successfully send message to queue';
 
-                    Queue::push(new SendWhatsappMessage($message->id));
-                } catch (\Exception $e) {
-                    $messageResponse = 'Error sending message: ' . $e->getMessage();
-                    $success = false; // Set success ke false jika ada error
+                        dispatch(new SendWhatsappMessage($message->id));
+                    } catch (\Exception $e) {
+                        $messageResponse = 'Error sending message: ' . $e->getMessage();
+                        $success = false; // Set success ke false jika ada error
+                    }
                 }
-            }
-        } else {
-            if (empty($phone) || !is_array($phone)) {
-                $messageResponse = 'No phone numbers provided or phone numbers is not an array';
-            } elseif (empty($message) && !empty($phone)) {
-                $messageResponse = 'Message cannot be empty';
             } else {
-                $messageResponse = 'Phone numbers and message cannot be empty';
+                if (empty($phone) || !is_array($phone)) {
+                    $messageResponse = 'No phone numbers provided or phone numbers is not an array';
+                } elseif (empty($message) && !empty($phone)) {
+                    $messageResponse = 'Message cannot be empty';
+                } else {
+                    $messageResponse = 'Phone numbers and message cannot be empty';
+                }
+                $success = false; // Set success ke false jika terdapat kesalahan input
             }
-            $success = false; // Set success ke false jika terdapat kesalahan input
         }
-
         return response()->json([
             'message' => $messageResponse,
             'success' => $success,
