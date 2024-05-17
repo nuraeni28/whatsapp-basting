@@ -7,15 +7,19 @@ const port = 3000;
 
 
 
-const client = new Client({
-    puppeteer:{
-        headless:false,
-    },
-    authStrategy: new LocalAuth({
-       
-    })
-});
+const wwebVersion = '2.2412.54';
 
+const client = new Client({
+    authStrategy: new LocalAuth(), // your authstrategy here
+    puppeteer: {
+        // puppeteer args here
+    },
+    // locking the wweb version
+    webVersionCache: {
+        type: 'remote',
+        remotePath: `https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/${wwebVersion}.html`,
+    },
+});
 
 client.on('qr', qr => {
     qrcode.generate(qr, {small: true});
