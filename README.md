@@ -29,7 +29,7 @@ Wait for the QR to appear on the terminal, then link the device and wait for **C
 ## Send Blasting With API 
 
 ```http
-POST /api/send-blast-message
+POST /api/blast-message
 ```
 - Body
 Example :
